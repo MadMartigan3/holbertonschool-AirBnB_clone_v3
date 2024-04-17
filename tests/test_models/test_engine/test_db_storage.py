@@ -86,3 +86,29 @@ class TestFileStorage(unittest.TestCase):
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_save(self):
         """Test that save properly saves objects to file.json"""
+class TestDBStorage(unittest.TestCase):
+    """Test the get method in the DBStorage class"""
+    def test_get_existing_object(self):
+        """Test retrieving an existing object"""
+        storage = DBStorage()
+        # Create a test object
+        test_obj = models.User()
+        test_obj.id = "test_id"
+        storage.new(test_obj)
+        storage.save()
+        
+        # Retrieve the object using get method
+        retrieved_obj = storage.get(models.User, "test_id")
+        
+        # Check if the retrieved object is the same as the test object
+        self.assertEqual(retrieved_obj, test_obj)
+    
+    def test_get_nonexistent_object(self):
+        """Test retrieving a nonexistent object"""
+        storage = DBStorage()
+        
+        # Retrieve a nonexistent object using get method
+        retrieved_obj = storage.get(models.User, "nonexistent_id")
+        
+        # Check if the retrieved object is None
+        self.assertIsNone(retrieved_obj)
