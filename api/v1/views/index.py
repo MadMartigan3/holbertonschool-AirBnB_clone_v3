@@ -19,6 +19,7 @@ def get_status():
         "status": "OK"}
     return jsonify(status)
 
+
 @app_views.route('/stats', strict_slashes=False)
 def stats():
     """ Return stats """
