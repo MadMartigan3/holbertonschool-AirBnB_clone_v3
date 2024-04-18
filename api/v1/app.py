@@ -2,7 +2,7 @@
 """ Module for the API """
 
 from flask import Flask
-from flask import jsonify
+from flask.json import jsonify
 from models import storage
 from api.v1.views import app_views
 from os import getenv
