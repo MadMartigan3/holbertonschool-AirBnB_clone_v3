@@ -17,6 +17,7 @@ def teardown(self):
     """ Closes the current session """
     storage.close()
 
+
 @app.errorhandler(404)
 def not_found(e):
     """ Returns a JSON-formatted 404 status code response """
